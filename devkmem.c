@@ -39,6 +39,8 @@ int main(int argc, char* argv[])
     mbase = mmap(0, PAGE_SIZE, PROT_READ, MAP_SHARED, fd, (virAddr & PAGE_MASK));
     if (mbase == MAP_FAILED) {
         printf("map failed %s\n",strerror(errno));
+	close(fd);
+        exit(-1);
     }
     
     printf("virAddr = 0x%lX \n", virAddr);
